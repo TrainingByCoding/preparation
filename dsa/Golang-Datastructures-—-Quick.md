@@ -1,31 +1,10 @@
 ---
-created: 2026-01-25T18:55:44 (UTC +05:30)
-tags: []
 source: https://medium.com/@priyankabhat2468/golang-datastructures-quick-cheatsheet-c6d26ce571ac
 author: Priyanka Bhat
 ---
 
 # Golang Datastructures — Quick
-
-> ## Excerpt
-> Golang Datastructures — Quick Cheatsheet This is a quick, Go-specific data structures cheatsheet designed for coding interviews.  It focuses on how to declare, use, and reason about common data …
-
 ---
-[
-
-![Priyanka Bhat](golang-datastructure/1b589c90-320a-4cee-9e6d-7b70a67c8b5a.jpg)
-
-
-
-](https://medium.com/@priyankabhat2468?source=post_page---byline--c6d26ce571ac---------------------------------------)
-
-4 min read
-
-Jan 1, 2026
-
-This is a quick, Go-specific data structures cheatsheet designed for coding interviews.
-
-It focuses on how to declare, use, and reason about common data structures in Go, along with their time complexity and typical use cases.
 
 ## ✅ 1. Slice (Dynamic Array)
 
@@ -404,9 +383,3 @@ graph := make(map[int][]Edge)
 -   Frequent insert/delete with pointer → linked list
 
 4\. **Always state time complexity**
-
-#golang
-
-#codinginterview
-
-#datastructures
