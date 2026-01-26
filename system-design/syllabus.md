@@ -1,10 +1,5 @@
 # System Design Fundamentals
 
 ## Core Concepts
-- Latency vs throughput
-- Availability vs consistency
-- CAP theorem
-- Horizontal vs vertical scaling
+- https://github.com/SweetCodey/system-design-masterclass/tree/main
 
-## Interview expectation
-- Clear trade-off explanation
