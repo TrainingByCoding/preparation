@@ -3,5 +3,7 @@
 - Golang
 - DSA with Golang
 - Kubernetes
+  
 - System Design
+- Networking
 - AWS
