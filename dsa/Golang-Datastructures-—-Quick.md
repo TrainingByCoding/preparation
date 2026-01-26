@@ -366,9 +366,23 @@ graph := make(map[int][]Edge)
     Length, capacity, reslicing, and append reallocation matter.
 3.  **Choose data structures based on access patterns**
 
--   Fast lookup → map / set
--   Min / Max access → heap
--   Tree or graph traversals → stack / queue
--   Frequent insert/delete with pointer → linked list
+-   Do I need ordering?
+-   Do I need fast lookup by key?
+-   Do I care about duplicates?
+-   How big will this get? (10s? millions?)
+-   Read-heavy or write-heavy?
+-   Concurrent access?
+-   ## The Go Data Structure Decision Table
+
+| Requirement                  | Use This            | Why                                  |
+|-----------------------------|---------------------|--------------------------------------|
+| Ordered collection          | slice               | Cache-friendly, simple               |
+| Fast lookup by key          | map                 | O(1) average lookup                  |
+| FIFO / LIFO                 | slice               | Stack / queue implementation         |
+| Unique items                | map[T]struct{}      | Set pattern                           |
+| Fixed size                  | array               | Memory predictability                |
+| Concurrency                 | sync.Map, channels  | Avoid data races                     |
+| Priority-based processing   | container/heap      | Min/Max heap                         |
+| Graph / tree                | Custom structs      | Explicit modeling                    |
 
 4\. **Always state time complexity**
