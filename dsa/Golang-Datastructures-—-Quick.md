@@ -9,20 +9,13 @@ author: Priyanka Bhat
 ## ✅ 1. Slice (Dynamic Array)
 
 ```
-
 var nums []int
-
-
 nums := make([]int, 0, 4)
 ```
 
 ```
-
 nums = []int{1, 2, 3}
-
-
 nums = append(nums, 4)
-
 
 len(nums)
 cap(nums)
@@ -50,12 +43,8 @@ m := make(map[string]int)
 ```
 
 ```
-
 m["a"] = 1
-
-
 val, ok := m["a"]
-
 
 delete(m, "a")
 ```
