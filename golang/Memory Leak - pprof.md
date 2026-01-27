@@ -56,36 +56,23 @@ func allocate() {
 ___
 
 ## 2️⃣ Run the Program
-
 go run .\pprof.go
+You’ll see: Memory will keep climbing.
+
 Allocated MBs: 1
 Allocated MBs: 2
 Allocated MBs: 3
 .
 .
 .
-
-You’ll see:
-
-Memory will keep climbing.
-
 ___
 
-## 3️⃣ Capture Memory Profile (THIS IS THE KEY STEP)
+## 3️⃣ Capture Memory Profile
 
-In another terminal:
-
-You’ll enter the pprof shell.
- go tool pprof http://localhost:6060/debug/pprof/heap
+In another terminal: go tool pprof http://localhost:6060/debug/pprof/heap
 ___
 
 ## 4️⃣ Commands to Clearly Identify the Leak
-
-### 🔥 Top memory consumers
-
-You’ll see something like:
-
-➡️ **allocate() is eating memory**
 (pprof) top
 Showing nodes accounting for 61.30MB, 100% of 61.30MB total
       flat  flat%   sum%        cum   cum%
@@ -94,7 +81,7 @@ Showing nodes accounting for 61.30MB, 100% of 61.30MB total
          0     0%   100%    61.30MB   100%  runtime.main
 ___
 
-### 🔥 Line-level blame (VERY IMPORTANT)
+### 🔥 Line-level blame
 (pprof) list allocate
 Total: 61.30MB
 ROUTINE ======================== main.allocate in C:\my_data\go_practice\pprof.go        
@@ -107,8 +94,5 @@ ROUTINE ======================== main.allocate in C:\my_data\go_practice\pprof.g
          .          .     32:   leakyGlobal = append(leakyGlobal, b)
          .          .     33:
          .          .     34:   fmt.Println("Allocated MBs:", len(leakyGlobal))
-You’ll see:
-
-➡️ **This line is the leak**
 
 The global slice is holding references forever.
