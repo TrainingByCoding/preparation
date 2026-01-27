@@ -1,4 +1,4 @@
-# Golang – Basics (Interview Focus)
+# Golang 
 
 ## Topics
 - Memory Leak - pprof
