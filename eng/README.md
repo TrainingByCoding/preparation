@@ -21,10 +21,12 @@
 | 11 | [11-precision-collocations-and-false-friends.md](11-precision-collocations-and-false-friends.md) | Keys to, made a request, on foot, disinterested vs uninterested |
 | 12 | [12-probability-and-certainty-language.md](12-probability-and-certainty-language.md) | 0-100% certainty language and hedging |
 | 13 | [13-idioms-reality-boundaries.md](13-idioms-reality-boundaries.md) | Reality and boundary idioms (new set) |
+| 14 | [14-casual-upgrades-dont-say-say.md](14-casual-upgrades-dont-say-say.md) | Don't Say → Say native upgrades: I'm lost, nailed it, bombed it, let's kick off, beats me |
+| 15 | [15-hindi-reaction-phrases.md](15-hindi-reaction-phrases.md) | Hindi → Native English reactions: flabbergasted, all bark no bite, sly fox, homebody, game plan |
 
 ---
 
-## New Focus Map (08-13)
+## New Focus Map (08-15)
 
 - Tone Control: 08
 - Action Verbs + While Pattern: 09
@@ -32,6 +34,8 @@
 - Precision and Collocations: 11
 - Probability Language: 12
 - Advanced Idioms (non-overlap): 13
+- Don't Say → Say Casual Upgrades: 14
+- Hindi → Native Reactions: 15
 
 ---
 
@@ -44,32 +48,3 @@
 5. **Spot mistakes** — when you read/hear English, identify the tense/modal being used
 
 ---
-
-## Quick-Recall Cards (read these every morning)
-
-```
-CAN     = present ability          "I can code."
-COULD   = past ability / polite    "I could run fast / Could you help?"
-MAY     = formal permission        "May I come in?"
-MIGHT   = weak possibility         "It might rain."
-MUST    = strong obligation        "You must stop."
-SHOULD  = advice                   "You should eat well."
-WOULD   = future-in-past / polite  "She said she would come."
-WILL    = certain future           "I will call you."
-```
-
-```
-ZERO CONDITIONAL  = always true        If + V1, V1
-FIRST CONDITIONAL = real possibility   If + V1, will + V1
-SECOND CONDITIONAL= imaginary          If + V2, would + V1
-THIRD CONDITIONAL = past regret        If + had V3, would have V3
-```
-
-```
-since = specific point → since 2020, since Monday
-for   = duration       → for 5 years, for 3 hours
-
-at = time points / locations       at 9am, at home
-in = months, years, inside         in July, in the room
-on = days, surfaces                on Monday, on the table
-```

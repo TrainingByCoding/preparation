@@ -54,4 +54,25 @@ func main() {
 
 	fmt.Println("\n=== Exercise 3: Nil Pointer ===")
 	handleNilPointer()
+
+	fmt.Println("\n=== Bonus: Heap Escape (from master100) ===")
+	result := process()
+	fmt.Println("Value:", *result)
 }
+
+// ========================================
+// Bonus: Heap Escape / Stack vs Heap (from master100)
+// ========================================
+// Q: When does Go move a variable from stack to heap?
+// A: When a pointer to a local variable escapes the function.
+//    Go's escape analysis detects this at compile time.
+//    Run: go build -gcflags="-m" to see escape decisions.
+
+func process() *int {
+	value := 10
+	// 'value' escapes to heap because we return a pointer to it
+	return &value
+}
+
+// Try: go build -gcflags="-m" ./go-core/01-pointers/
+// Look for: "moved to heap: value"

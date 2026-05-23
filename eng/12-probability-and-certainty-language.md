@@ -113,18 +113,3 @@ A: Is the launch at risk?
 B: There is a small chance of delay due to testing.
 
 ---
-
-## 8. Practice: Choose the Right Strength
-
-Pick the best phrase:
-
-1. I am 100% sure. -> ___
-2. I think this may happen, around 50%. -> ___
-3. Very little chance. -> ___
-4. I am sure it will not happen. -> ___
-
-Sample answers:
-1. definitely / certainly
-2. maybe / perhaps
-3. unlikely / doubtful
-4. no chance / impossible

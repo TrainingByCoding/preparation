@@ -119,3 +119,69 @@ func main() {
 	fmt.Println("(Try this if you have extra time)")
 	// dynamicWorkerPool()
 }
+
+/*
+SOLUTIONS:
+
+func basicWorkerPool() {
+	const numWorkers = 3
+	const numJobs = 10
+	jobs := make(chan int, numJobs)
+	var wg sync.WaitGroup
+	for w := 1; w <= numWorkers; w++ {
+		wg.Add(1)
+		go func(id int) {
+			defer wg.Done()
+			for j := range jobs {
+				time.Sleep(500 * time.Millisecond)
+				fmt.Printf("Worker %d processing job %d\n", id, j)
+			}
+		}(w)
+	}
+	for j := 1; j <= numJobs; j++ { jobs <- j }
+	close(jobs)
+	wg.Wait()
+}
+
+func workerPoolWithResults() {
+	const numWorkers = 4
+	const numJobs = 20
+	jobs := make(chan int, numJobs)
+	results := make(chan int, numJobs)
+	var wg sync.WaitGroup
+	worker := func(id int, jobs <-chan int, results chan<- int) {
+		defer wg.Done()
+		for j := range jobs { results <- j * j }
+	}
+	for w := 1; w <= numWorkers; w++ { wg.Add(1); go worker(w, jobs, results) }
+	for j := 1; j <= numJobs; j++ { jobs <- j }
+	close(jobs)
+	go func() { wg.Wait(); close(results) }()
+	for r := range results { fmt.Println(r) }
+}
+
+func urlFetcher() {
+	urls := []string{
+		"http://example.com/1","http://example.com/2","http://example.com/3",
+		"http://example.com/4","http://example.com/5","http://example.com/6",
+		"http://example.com/7","http://example.com/8","http://example.com/9",
+		"http://example.com/10",
+	}
+	const numWorkers = 3
+	jobs := make(chan string, len(urls))
+	var wg sync.WaitGroup
+	for w := 1; w <= numWorkers; w++ {
+		wg.Add(1)
+		go func(id int) {
+			defer wg.Done()
+			for url := range jobs {
+				time.Sleep(100 * time.Millisecond)
+				fmt.Printf("Worker %d fetched: %s\n", id, url)
+			}
+		}(w)
+	}
+	for _, url := range urls { jobs <- url }
+	close(jobs)
+	wg.Wait()
+}
+*/

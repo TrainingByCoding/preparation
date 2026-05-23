@@ -60,52 +60,6 @@ func exercise3() {
 }
 
 // ========================================
-// Exercise 4: Pipeline Pattern
-// ========================================
-
-// Stage 1: Generate numbers 1-20
-func generate(nums ...int) <-chan int {
-	out := make(chan int)
-	go func() {
-		// TODO: Send all nums to channel
-		close(out)
-	}()
-	return out
-}
-
-// Stage 2: Square numbers
-func square(in <-chan int) <-chan int {
-	out := make(chan int)
-	go func() {
-		// TODO: Read from in, square, send to out
-		close(out)
-	}()
-	return out
-}
-
-// Stage 3: Filter even numbers only
-func filterEven(in <-chan int) <-chan int {
-	out := make(chan int)
-	go func() {
-		// TODO: Read from in, only send evens to out
-		close(out)
-	}()
-	return out
-}
-
-func exercise4() {
-	// TODO: Connect the pipeline
-	// generate → square → filterEven → print
-
-	// Example:
-	// nums := []int{1, 2, 3, 4, 5}
-	// for result := range filterEven(square(generate(nums...))) {
-	//     fmt.Println(result)
-	// }
-	// Expected: 4, 16 (only even squares)
-}
-
-// ========================================
 // Bonus: Rate-Limited Producer
 // ========================================
 func rateLimitedProducer(ch chan<- int, rate time.Duration) {
@@ -116,6 +70,18 @@ func rateLimitedProducer(ch chan<- int, rate time.Duration) {
 
 	// Your code here
 }
+
+// ========================================
+// Bonus 2: HTTP-backed Producer-Consumer (from master100)
+// ========================================
+// Pattern: HTTP handler enqueues to a buffered channel, background goroutine consumes
+//   var queue = make(chan string, 10)
+//   go consume()        // consumer runs in background
+//   http.HandleFunc("/enqueue", handler)  // handler is the producer
+//   http.ListenAndServe(":8080", nil)
+//
+// handler: reads query param "data", sends to queue channel
+// consume: loops over queue channel and processes each item
 
 // ========================================
 // Main
@@ -130,9 +96,6 @@ func main() {
 	fmt.Println("\n=== Exercise 3: Multiple Consumers ===")
 	exercise3()
 
-	fmt.Println("\n=== Exercise 4: Pipeline ===")
-	exercise4()
-
 	fmt.Println("\n=== Bonus: Rate Limited ===")
 	ch := make(chan int)
 	go rateLimitedProducer(ch, 500*time.Millisecond)
@@ -142,3 +105,56 @@ func main() {
 		fmt.Printf("Received: %d (at %v)\n", <-ch, time.Now().Format("15:04:05"))
 	}
 }
+
+/*
+SOLUTIONS:
+
+func exercise1() {
+	ch := make(chan int)
+	go func() {
+		for i := 1; i <= 100; i++ { ch <- i }
+		close(ch)
+	}()
+	for n := range ch { fmt.Println(n * n) }
+}
+
+func exercise2() {
+	ch := make(chan int, 30)
+	var wg sync.WaitGroup
+	for p := 0; p < 3; p++ {
+		wg.Add(1)
+		go func(start int) {
+			defer wg.Done()
+			for i := start; i < start+10; i++ { ch <- i }
+		}(p*10 + 1)
+	}
+	go func() { wg.Wait(); close(ch) }()
+	sum := 0
+	for n := range ch { sum += n }
+	fmt.Println("Total sum:", sum) // 1+2+...+30 = 465
+}
+
+func exercise3() {
+	jobs := make(chan int, 100)
+	var wg sync.WaitGroup
+	for w := 1; w <= 3; w++ {
+		wg.Add(1)
+		go func(id int) {
+			defer wg.Done()
+			for j := range jobs { fmt.Printf("Worker %d processed job %d\n", id, j) }
+		}(w)
+	}
+	go func() {
+		for i := 1; i <= 30; i++ { jobs <- i }
+		close(jobs)
+	}()
+	wg.Wait()
+}
+
+func rateLimitedProducer(ch chan<- int, rate time.Duration) {
+	ticker := time.NewTicker(rate)
+	defer ticker.Stop()
+	i := 1
+	for range ticker.C { ch <- i; i++ }
+}
+*/

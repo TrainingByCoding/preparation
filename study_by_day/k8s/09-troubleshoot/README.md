@@ -4,6 +4,56 @@ These are the actual problems you'll hit and be asked about in interviews.
 
 ---
 
+## Quick Reference — 30 Essential Commands
+
+| Problem | Check | Command |
+|---------|-------|---------|
+| **1. Pod is not running** | Check pod status | `kubectl get pods -A` |
+| **2. Pod in CrashLoopBackOff** | Check pod logs | `kubectl logs <pod-name> -n <ns>` |
+| **3. Previous container logs** | Check previous logs | `kubectl logs <pod-name> -n <ns> --previous` |
+| **4. Pod is stuck in ContainerCreating** | Describe pod | `kubectl describe pod <pod-name> -n <ns>` |
+| **5. ImagePullBackOff error** | Check events | `kubectl describe pod <pod-name> -n <ns> \| grep -i image`
+| **6. Pod is Pending** | See why pod is pending | `kubectl describe pod <pod-name> -n <ns>` |
+| **7. Insufficient resources (CPU/Memory)** | Check cluster resources | `kubectl top nodes` |
+| **8. Node is Not Ready** | Check node status | `kubectl get nodes` |
+| **9. High CPU/Memory usage** | Check usage | `kubectl top pods -A` |
+| **10. Pod OOMKilled** | Check pod events | `kubectl describe pod <pod-name> -n <ns> \| grep -i oom` |
+| **11. Pod keeps restarting** | Check restart count | `kubectl get pod <pod-name> -n <ns>` |
+| **12. Service not reachable** | Check service | `kubectl get svc -A` |
+| **13. DNS not resolving** | Check CoreDNS pods | `kubectl get pods -n kube-system \| grep -i coredns` |
+| **14. DNS resolution failed from pod** | Test DNS from pod | `kubectl exec -it <pod-name> -n <ns> -- nslookup kubernetes.default` |
+| **15. Ingress not working** | Check ingress | `kubectl get ingress -A` |
+| **16. Ingress returns 404/502** | Check ingress controller logs | `kubectl logs -n ingress-nginx <kubectl get pods -n ingress-nginx \| head -1>` |
+| **17. No endpoints found** | Check endpoints | `kubectl get endpoints <svc-name> -n <ns>` |
+| **18. ConfigMap not found** | Check configmap | `kubectl get configmap <cm-name> -n <ns> -o yaml` |
+| **19. Secret not found** | Check secret | `kubectl get secret <secret-name> -n <ns> -o yaml` |
+| **20. Volume mount issues** | Check pod describe | `kubectl describe pod <pod-name> -n <ns> \| grep -i volume` |
+| **21. PVC is Pending** | Check PVC | `kubectl get pvc -A` |
+| **22. PV not available** | Check PV | `kubectl get pv` |
+| **23. Storage full on node** | Check node disk | `kubectl describe node <node-name> \| grep -i "disk\|storage"` |
+| **24. Network policy blocking access** | Check network policies | `kubectl get networkpolicy -A` |
+| **25. Pod can't reach external service** | Test connectivity from pod | `kubectl exec -it <pod-name> -n <ns> -- curl -I http://<external-url>` |
+| **26. Deployment rollback** | Check rollout history | `kubectl rollout history deployment <deploy-name> -n <ns>` |
+| **27. Undo bad deployment** | Rollback deployment | `kubectl rollout undo deployment <deploy-name> -n <ns>` |
+| **28. Check rollout status** | See rollout status | `kubectl rollout status deployment <deploy-name> -n <ns>` |
+| **29. Troubleshoot quickly** | Get all events | `kubectl get events -A --sort-by=.metadata.creationTimestamp` |
+| **30. Verify everything** | Get all resources | `kubectl get all -A` |
+
+**Pro Tips:**
+- Always check events first: `kubectl get events -n <namespace>`
+- Logs are your best friend: `kubectl logs <pod> --previous` for crashed containers
+- Describe is a superpower: `kubectl describe <resource> <name>`
+- Stay calm — Kubernetes will make sense eventually!
+
+**Handy Shortcuts:**
+- `-A` = All namespaces
+- `-n` = Specific namespace
+- `-o wide` = More details
+- `-o yaml` = Full YAML output
+- `--watch` = Watch changes live
+
+---
+
 ## 1. CrashLoopBackOff
 **Cause:** App keeps crashing. Backoff grows: 10s, 20s, 40s, 80s...
 

@@ -95,7 +95,7 @@ func main() {
 }
 
 // ========================================
-// Complexity Analysis Notes
+// Complexity Analysis + Solutions
 // ========================================
 /*
 TWO SUM:
@@ -111,4 +111,66 @@ KEY PATTERNS:
 1. Hash map for O(n) lookups
 2. Two pointers for sorted arrays
 3. Sort first if space allows
+
+SOLUTIONS:
+
+func twoSum(nums []int, target int) []int {
+	seen := make(map[int]int)
+	for i, n := range nums {
+		if j, ok := seen[target-n]; ok { return []int{j, i} }
+		seen[n] = i
+	}
+	return []int{}
+}
+
+func threeSum(nums []int) [][]int {
+	sort.Ints(nums)
+	result := [][]int{}
+	for i := 0; i < len(nums)-2; i++ {
+		if i > 0 && nums[i] == nums[i-1] { continue }
+		left, right := i+1, len(nums)-1
+		for left < right {
+			sum := nums[i] + nums[left] + nums[right]
+			if sum == 0 {
+				result = append(result, []int{nums[i], nums[left], nums[right]})
+				for left < right && nums[left] == nums[left+1] { left++ }
+				for left < right && nums[right] == nums[right-1] { right-- }
+				left++; right--
+			} else if sum < 0 { left++ } else { right-- }
+		}
+	}
+	return result
+}
+
+func twoSumSorted(nums []int, target int) []int {
+	left, right := 0, len(nums)-1
+	for left < right {
+		sum := nums[left] + nums[right]
+		if sum == target { return []int{left, right} }
+		if sum < target { left++ } else { right-- }
+	}
+	return []int{}
+}
+
+func countPairs(nums []int, target int) int {
+	seen := make(map[int]int)
+	count := 0
+	for _, n := range nums {
+		count += seen[target-n]
+		seen[n]++
+	}
+	return count
+}
+
+func twoSumAllPairs(nums []int, target int) [][]int {
+	seen := make(map[int][]int)
+	result := [][]int{}
+	for i, n := range nums {
+		for _, j := range seen[target-n] {
+			result = append(result, []int{j, i})
+		}
+		seen[n] = append(seen[n], i)
+	}
+	return result
+}
 */

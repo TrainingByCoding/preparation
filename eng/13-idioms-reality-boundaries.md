@@ -96,13 +96,19 @@ Model conversions:
 ## 7. Role-Play Drill
 
 A: We can deliver all features tomorrow.
+
 B (idiom): Wake up and smell the coffee.
+
 B (professional): Let us be realistic about what is feasible by tomorrow.
 
 A: Please handle HR contracts too.
+
 B (idiom): Not my circus, not my monkeys.
+
 B (professional): HR contracts are outside my ownership.
 
 A: The client might approve without legal review.
+
 B (idiom): When pigs fly.
+
 B (professional): That is very unlikely without legal approval.
