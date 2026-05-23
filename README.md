@@ -1,9 +1,11 @@
 # My Preparation Book
-### Sections
+### Section 1
 - Golang
-- DSA with Golang
-- Kubernetes
-  
+- DSA with Golang (150)
 - System Design
+  
+### Section 2
+- Kubernetes
 - Networking
+- Eng
 - AWS
