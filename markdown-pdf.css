@@ -1,0 +1,111 @@
+/* Custom CSS for Markdown PDF - Syntax Highlighting */
+
+/* Code blocks */
+pre {
+    background-color: #f6f8fa !important;
+    border: 1px solid #d0d7de !important;
+    border-radius: 6px !important;
+    padding: 16px !important;
+    overflow: auto !important;
+    font-size: 9pt !important;
+    line-height: 1.45 !important;
+}
+
+code {
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace !important;
+}
+
+/* Inline code */
+:not(pre)>code {
+    background-color: #eff1f3 !important;
+    padding: 0.2em 0.4em !important;
+    border-radius: 3px !important;
+    font-size: 85% !important;
+    color: #24292f !important;
+}
+
+/* Syntax highlighting colors */
+.hljs-keyword {
+    color: #d73a49 !important;
+    font-weight: bold;
+}
+
+/* func, return, for, if */
+.hljs-built_in {
+    color: #005cc5 !important;
+}
+
+/* make, len, append */
+.hljs-type {
+    color: #6f42c1 !important;
+}
+
+/* int, string, bool */
+.hljs-string {
+    color: #032f62 !important;
+}
+
+/* string literals */
+.hljs-number {
+    color: #005cc5 !important;
+}
+
+/* numbers */
+.hljs-comment {
+    color: #6a737d !important;
+    font-style: italic;
+}
+
+/* comments */
+.hljs-function {
+    color: #6f42c1 !important;
+    font-weight: bold;
+}
+
+/* function names */
+.hljs-variable {
+    color: #e36209 !important;
+}
+
+/* variables */
+.hljs-literal {
+    color: #005cc5 !important;
+}
+
+/* true, false, nil */
+
+/* Headers */
+h1 {
+    color: #1a1a1a !important;
+    border-bottom: 2px solid #e1e4e8 !important;
+    padding-bottom: 0.3em !important;
+    font-size: 18pt !important;
+}
+
+h2 {
+    color: #1a1a1a !important;
+    font-size: 14pt !important;
+}
+
+/* Strong/Bold text */
+strong {
+    color: #0366d6 !important;
+}
+
+/* Horizontal rules */
+hr {
+    border: 0 !important;
+    border-top: 2px solid #e1e4e8 !important;
+    margin: 1em 0 !important;
+}
+
+/* Page margins for printing */
+@page {
+    margin: 0.75in;
+}
+
+/* Avoid page breaks inside code blocks */
+pre,
+code {
+    page-break-inside: avoid !important;
+}
